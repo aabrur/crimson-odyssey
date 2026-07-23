@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2,
+  "ui": {
+    "sidebarBreakpoint": 110,
+    "sidebarWidth": 34,
+    "theme": "crimson",
+    "mouse": true,
+    "showReasoningSummary": true
+  },
+  "models": {
+    "cacheTtlHours": 24,
+    "fallback": "ask"
+  },
+  "history": {
+    "retentionDays": 90
+  },
+  "security": {
+    "ownerOnly": true,
+    "redactLogs": true,
+    "allowShell": false
+  },
+  "providers": {
+    "openai": {
+      "secretRef": "env:OPENAI_API_KEY"
+    },
+    "ollama": {
+      "baseUrl": "http://127.0.0.1:11434"
+    },
+    "custom": {
+      "baseUrl": "http://127.0.0.1:8000/v1",
+      "secretRef": "env:CRIMSON_CUSTOM_API_KEY"
+    }
+  }
+}

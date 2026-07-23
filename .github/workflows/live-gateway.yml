@@ -1,0 +1,20 @@
+name: Live Gateway Verification
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify-live-gateways:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - run: npm install
+      - name: Verify Telegram and Discord credentials
+        env:
+          CRIMSON_TELEGRAM_TOKEN: ${{ secrets.CRIMSON_TELEGRAM_TOKEN }}
+          CRIMSON_DISCORD_TOKEN: ${{ secrets.CRIMSON_DISCORD_TOKEN }}
+          CRIMSON_DISCORD_SERVER_ID: ${{ secrets.CRIMSON_DISCORD_SERVER_ID }}
+        run: npm run verify:live

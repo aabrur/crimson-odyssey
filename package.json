@@ -1,0 +1,54 @@
+{
+  "name": "crimson-odyssey",
+  "version": "0.2.0",
+  "description": "A multilingual, loadout-driven terminal AI agent by Crimson Rift Studio.",
+  "type": "module",
+  "bin": {
+    "crimson": "bin/crimson.js"
+  },
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node bin/crimson.js",
+    "test": "node --test \"test/*.test.js\"",
+    "test:coverage": "node --test --experimental-test-coverage \"test/*.test.js\"",
+    "check": "node test/syntax-check.js && node test/no-em-dash.test.js",
+    "verify": "npm run check && npm test && npm pack --dry-run",
+    "doctor": "node bin/crimson.js doctor",
+    "verify:live": "node scripts/live-gateway-check.js"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "cli",
+    "tui",
+    "loadout",
+    "telegram",
+    "discord",
+    "crimson"
+  ],
+  "author": "Crimson Rift Studio",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "src",
+    "docs",
+    "scripts",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "install.ps1",
+    "install.sh",
+    "config.example.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aabrur/crimson-odyssey.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aabrur/crimson-odyssey/issues"
+  },
+  "homepage": "https://github.com/aabrur/crimson-odyssey#readme"
+}

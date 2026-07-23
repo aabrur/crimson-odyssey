@@ -1,0 +1,15 @@
+node_modules/
+npm-debug.log*
+*.tgz
+coverage/
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+.crimson/
+*.log
+secrets.env
+config.local.json
+.vscode/
+.idea/
