@@ -183,7 +183,7 @@ test('CLI client invokes Windows .cmd shim without placing the prompt on the com
     provider: 'codex-cli',
     model: 'default',
     executable: 'C:\\tools\\codex.cmd'
-  }, {}, { spawnImpl });
+  }, {}, { spawnImpl, platform: 'win32' });
   await client.send({ messages: [{ role: 'user', content: 'never put this prompt in cmd' }] });
   assert.match(call.command, /cmd\.exe$/i);
   assert.deepEqual(call.args.slice(0, 3), ['/d', '/s', '/c']);
