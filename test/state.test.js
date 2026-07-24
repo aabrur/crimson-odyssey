@@ -50,6 +50,7 @@ test('Soul and Identity edits create revisions and can roll back', () => {
   } finally { tmp.cleanup(); }
 });
 
+
 test('config schema migration preserves user values and adds setup defaults', () => {
   const tmp = tempDir();
   try {

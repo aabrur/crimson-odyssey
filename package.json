@@ -1,6 +1,6 @@
 {
   "name": "crimson-odyssey",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A multilingual, loadout-driven terminal AI agent by Crimson Rift Studio.",
   "type": "module",
   "bin": {

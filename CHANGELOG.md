@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.1 - 2026-07-23
+
+- Simplified provider-first credential setup with keep or replace behavior.
+- Fixed secret input paste handling on Windows Terminal and other terminals.
+- Added `crimson setup --auto` agent and credential discovery.
+- Added safe CLI delegation for Codex CLI, Claude Code, and Gemini CLI without extracting private session tokens.
+
 ## 0.3.0 - Third Rift
 
 ### Added

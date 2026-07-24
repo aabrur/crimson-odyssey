@@ -4,7 +4,6 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-
 Write-Host "Crimson Odyssey installer" -ForegroundColor Red
 
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
@@ -22,12 +21,8 @@ if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
 
 if ($FromCurrentDirectory -or (Test-Path (Join-Path $PSScriptRoot "package.json"))) {
   Push-Location $PSScriptRoot
-  try {
-    npm install -g .
-  }
-  finally {
-    Pop-Location
-  }
+  try { npm install -g . }
+  finally { Pop-Location }
 }
 else {
   npm install -g $Repository

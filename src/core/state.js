@@ -108,12 +108,10 @@ export function initializeWorkspace(workspace = process.cwd()) {
   writeYamlIfMissing(p.identity, DEFAULT_IDENTITY);
   writeYamlIfMissing(p.agent, DEFAULT_AGENT);
   writeYamlIfMissing(p.workspaceConfig, { ...DEFAULT_WORKSPACE, root: p.workspace });
-
   const currentConfig = readJSON(p.config, null);
   const migratedConfig = mergeDefaults(DEFAULT_CONFIG, currentConfig || {});
   migratedConfig.schemaVersion = DEFAULT_CONFIG.schemaVersion;
   if (!currentConfig || JSON.stringify(currentConfig) !== JSON.stringify(migratedConfig)) writeJSON(p.config, migratedConfig);
-
   if (!existsSync(p.model)) writeJSON(p.model, { provider: null, model: null, custom: false, updatedAt: null });
   if (!existsSync(p.heartbeat)) writeJSON(p.heartbeat, {
     status: 'idle',

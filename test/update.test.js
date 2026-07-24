@@ -97,6 +97,7 @@ test('global update uses the official GitHub package source', () => {
   } finally { tmp.cleanup(); }
 });
 
+
 test('current update status renders a clear current message', () => {
   assert.equal(formatUpdateNotice({ ok: true, available: false, currentVersion: '0.3.0' }), 'Crimson Odyssey 0.3.0 is current.');
 });

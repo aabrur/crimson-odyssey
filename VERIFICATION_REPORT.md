@@ -1,4 +1,4 @@
-# Crimson Odyssey v0.3.0 Verification Report
+# Crimson Odyssey v0.3.1 Verification Report
 
 Date: 2026-07-23
 Target repository: `aabrur/crimson-odyssey`
@@ -29,7 +29,7 @@ Live Telegram, Discord, provider, and remote GitHub update checks were not execu
 | Secret pattern scan | PASS |
 | Package dry-run | PASS |
 | Local tarball installation | PASS |
-| CLI version smoke | PASS, 0.3.0 |
+| CLI version smoke | PASS, 0.3.1 |
 | CLI status smoke | PASS |
 | TUI size matrix | PASS, 80x24 through 200x60 |
 | Loadout and selective context | PASS |
@@ -45,7 +45,7 @@ npm run check
 npm test
 npm pack --dry-run
 npm pack
-npm install --prefix <temporary-prefix> ./crimson-odyssey-0.3.0.tgz
+npm install --prefix <temporary-prefix> ./crimson-odyssey-0.3.1.tgz
 <temporary-prefix>/node_modules/.bin/crimson --version
 crimson setup --no-tui
 crimson status --json
@@ -53,7 +53,7 @@ crimson status --json
 
 ## Package evidence
 
-- Package: `crimson-odyssey-0.3.0.tgz`
+- Package: `crimson-odyssey-0.3.1.tgz`
 - Package contains the source, documentation, verification report, and build manifest
 - Runtime dependencies: none
 - The final SHA-256 is published with the generated artifact

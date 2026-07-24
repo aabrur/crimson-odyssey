@@ -2,7 +2,7 @@
 
 **Equip your agent. Enter the rift.**
 
-Crimson Odyssey is a multilingual, loadout-driven terminal AI agent by Crimson Rift Studio. Version 0.3.0 adds one-command onboarding and a secure update lifecycle so normal users do not need to edit `.env`, JSON, or YAML by hand.
+Crimson Odyssey is a multilingual, loadout-driven terminal AI agent by Crimson Rift Studio. Version 0.3.1 adds one-command onboarding and a secure update lifecycle so normal users do not need to edit `.env`, JSON, or YAML by hand.
 
 ## Requirements
 
@@ -151,8 +151,15 @@ npm run verify
 crimson doctor --json
 ```
 
-The v0.3.0 local release candidate passed 55 automated tests, syntax verification, secret scanning, no-em-dash enforcement, package dry-run, local package installation, setup tests, TUI layout tests, and mocked gateway verification.
+The v0.3.1 local release candidate passed 55 automated tests, syntax verification, secret scanning, no-em-dash enforcement, package dry-run, local package installation, setup tests, TUI layout tests, and mocked gateway verification.
 
 Live provider, gateway, and remote GitHub update success remains environment-dependent and must be proved on a machine with credentials and external network access.
 
 See `docs/SETUP.md`, `docs/UPDATES.md`, and `VERIFICATION_REPORT.md` for the complete contract.
+
+
+## Automatic agent discovery
+
+Run `crimson setup --auto` to detect supported local agent CLIs and standard provider environment credentials. Crimson can delegate model calls through an already authenticated Codex CLI, Claude Code, or Gemini CLI session without copying their private session tokens. Other detected agents are reported but are not used until a safe non-interactive adapter is available.
+
+Credential setup is now provider-first: select provider, keep or replace an existing credential, enter a key only when required, then select the model. Secret input supports normal terminal paste on Windows, macOS, and Linux.

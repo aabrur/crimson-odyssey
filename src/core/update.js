@@ -21,10 +21,7 @@ export function packageRootFromModule() {
 }
 
 export function normalizeUpdateConfig(config = {}) {
-  return {
-    ...DEFAULT_UPDATE_CONFIG,
-    ...(config.updates || config.update || {})
-  };
+  return { ...DEFAULT_UPDATE_CONFIG, ...(config.updates || config.update || {}) };
 }
 
 export function compareVersions(left, right) {
@@ -65,11 +62,7 @@ export function detectInstall({ packageRoot = packageRootFromModule(), spawnImpl
   const root = resolve(packageRoot);
   if (existsSync(join(root, '.git'))) {
     const remoteResult = run(spawnImpl, 'git', ['-C', root, 'remote', 'get-url', 'origin']);
-    return {
-      mode: 'git',
-      packageRoot: root,
-      remote: successful(remoteResult) ? outputText(remoteResult) : null
-    };
+    return { mode: 'git', packageRoot: root, remote: successful(remoteResult) ? outputText(remoteResult) : null };
   }
   const globalPrefix = run(spawnImpl, 'npm', ['prefix', '-g']);
   const normalizedRoot = root.replace(/\\/g, '/').toLowerCase();
@@ -114,9 +107,7 @@ async function fetchWithTimeout(fetchImpl, url, options, timeoutMs) {
 async function remoteFromHttp({ fetchImpl, repository, branch, timeoutMs }) {
   const apiUrl = `https://api.github.com/repos/${repository}/contents/package.json?ref=${encodeURIComponent(branch)}`;
   let response = await fetchWithTimeout(fetchImpl, apiUrl, { headers: githubHeaders() }, timeoutMs);
-  if (response.ok) {
-    return { package: parsePackage(await response.text()), method: 'github-api', remoteSha: response.headers?.get?.('etag') || null };
-  }
+  if (response.ok) return { package: parsePackage(await response.text()), method: 'github-api', remoteSha: response.headers?.get?.('etag') || null };
   const rawUrl = `https://raw.githubusercontent.com/${repository}/${branch}/package.json`;
   response = await fetchWithTimeout(fetchImpl, rawUrl, { headers: githubHeaders() }, timeoutMs);
   if (!response.ok) throw new Error(`Remote metadata request failed with HTTP ${response.status}`);
@@ -208,17 +199,10 @@ function releaseLock(lockFile) {
 }
 
 function commandFailure(result, fallback) {
-  const message = String(result?.stderr || result?.stdout || fallback || 'Command failed').trim();
-  return new Error(message);
+  return new Error(String(result?.stderr || result?.stdout || fallback || 'Command failed').trim());
 }
 
-export function applyUpdate({
-  packageRoot = packageRootFromModule(),
-  spawnImpl = spawnSync,
-  home,
-  repository = UPDATE_REPOSITORY,
-  branch = UPDATE_BRANCH
-} = {}) {
+export function applyUpdate({ packageRoot = packageRootFromModule(), spawnImpl = spawnSync, home, repository = UPDATE_REPOSITORY, branch = UPDATE_BRANCH } = {}) {
   const install = detectInstall({ packageRoot, spawnImpl });
   const lockFile = globalPaths(home).updateLock;
   acquireLock(lockFile);
@@ -239,7 +223,6 @@ export function applyUpdate({
       if (!successful(verify)) throw commandFailure(verify, 'Post-update verification failed');
       return { ok: true, mode: install.mode, restartRequired: true, commands };
     }
-
     const npmInstall = run(spawnImpl, 'npm', ['install', '-g', `github:${repository}#${branch}`], { timeout: 240000 });
     commands.push(['npm', 'install', '-g', `github:${repository}#${branch}`]);
     if (!successful(npmInstall)) throw commandFailure(npmInstall, 'Global package update failed');
@@ -253,8 +236,6 @@ export function formatUpdateNotice(status) {
   if (!status || status.disabled) return '';
   if (!status.ok) return `Update check unavailable: ${status.error || 'unknown error'}`;
   if (!status.available) return `Crimson Odyssey ${status.currentVersion} is current.`;
-  const target = status.latestVersion && status.latestVersion !== status.currentVersion
-    ? `v${status.latestVersion}`
-    : 'a newer repository revision';
+  const target = status.latestVersion && status.latestVersion !== status.currentVersion ? `v${status.latestVersion}` : 'a newer repository revision';
   return `Crimson Odyssey update available: ${target}. Run crimson update apply.`;
 }
